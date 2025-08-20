@@ -2,12 +2,6 @@ const WebSocket = require('ws');
 
 const ws = new WebSocket('wss://scrapyard.reassembly.dev');
 
-const interval = setInterval(() => {
-    if (ws.readyState === WebSocket.OPEN) {
-      ws.send('Pong');
-    }
-}, 1000);
-
 ws.on('open', () => {
     console.log('WebSocket connection established');
 });
