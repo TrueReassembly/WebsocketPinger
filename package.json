@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server.js"
+    "server": "npm i && node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.0.0"
   },
   "author": "",
   "license": "ISC"
