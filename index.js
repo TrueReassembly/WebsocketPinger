@@ -1,16 +1,25 @@
-const { WebSocket } = require("ws")
+const WebSocket = require('ws');
 
-const wss = new WebSocket('wss://qs4k0cc4gokwgkwcsoogo8ks.51.195.138.100.sslip.io/ws')
+const ws = new WebSocket('wss://scrapyard.reassembly.dev');
 
-wss.on('open', () => {
-    console.log("WebSocket connection established")
-})
+const interval = setInterval(() => {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send('Pong');
+    }
+}, 1000);
 
-wss.on('message', (data) => {
-    console.log(`Server: ${data}"`)
-})
+ws.on('open', () => {
+    console.log('WebSocket connection established');
+});
 
-setInterval(() => {
-    wss.send("ping")
-    console.log("Client: ping");
-}, 1000)    
+ws.on('message', (message) => {
+    console.log('From Server:', message);
+});
+
+ws.on('close', () => {
+    console.log('WebSocket connection closed');
+});
+
+ws.on('error', (error) => {
+    console.error('WebSocket error:', error);
+});
